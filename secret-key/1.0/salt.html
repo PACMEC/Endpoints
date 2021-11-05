@@ -1,0 +1,40 @@
+
+<pre>
+define( 'AUTH_KEY'        , 'O3yxue9Z7ILcV6MjAYxkUX5exfqtc84y3YrwBBu8k6XaDCbwNf69PF494EvwolGB' );
+define( 'SECURE_AUTH_KEY' , 'mOWjP33fMkI7LmMVmtdIopY8w4q4XjBuIHMqpFm6jVo3YFdQnASj2fMC4R2sQNow' );
+define( 'LOGGED_IN_KEY'   , 'mT3qblDvduAFiT0nsx9W4aoEPCXabWA0C4zfNYJvbzYF6prf4551mNLufLrcBZgh' );
+define( 'NONCE_KEY'       , 'uRGyfFx2vdkjPnyKJD9aTS3QNRZudOtY1KTdFgaiViVd4ot2REeoXoM1ZTn810FQ' );
+define( 'AUTH_SALT'       , '2d5Vrqg5uVyccT4p0nnuY2p8gwEwJfab0ZxNoOi0owDMtGsG3kAlBgBuSnfFAoPp' );
+define( 'SECURE_AUTH_SALT', 'CmXD5cTa7dL6AlVwp8T9YUOpFGwsoedcmIaZxX4H9gJTKIDceM3pVUUxfeS16lGZ' );
+define( 'LOGGED_IN_SALT'  , 'ycRGduSL7GY7hzT1xEH9PONVRb5hb6N0vtFoX3HqQIPfybbbApfR5aLrcphm1UXQ' );
+define( 'NONCE_SALT'      , 'h0o7hZoIun8Q1rT7x9UOOC1w1XBhqlrQEJkI8zGrL533D913j1Cvp8GNxa42K3r3' );
+</pre><style>
+    p, pre.info {
+        max-width: 660px;
+    }
+    pre.info {
+        white-space: pre-wrap;
+        word-break: break-all;
+        font-size: 80%;
+    }
+</style>
+<hr>
+<p>
+    This feature is <strong>deprecated</strong>!  We highly recommend
+    generating your own keys and salts instead of relying on a remote service
+    to do this for you.
+</p>
+<p>
+    If you have <code>python</code> installed, try running this command (all on
+    one line):
+</p>
+<pre class="info">
+python -c "import random; import string; r = random.SystemRandom(); print(chr(10).join('define( {q}{0}{q}{1}, {q}{2}{q} );'.format(key,' '*(16-len(key)),''.join(r.choice(string.ascii_letters+string.digits)for _ in range(64)),q=chr(39))for key in 'AUTH_KEY SECURE_AUTH_KEY LOGGED_IN_KEY NONCE_KEY AUTH_SALT SECURE_AUTH_SALT LOGGED_IN_SALT NONCE_SALT'.split(' ')))"
+</pre>
+<p>
+    Or, if you're using a <code>.env</code> file for configuration (also
+    recommended), try this:
+</p>
+<pre class="info">
+python -c "import random; import string; r = random.SystemRandom(); print(chr(10).join('{0}={q}{1}{q}'.format(key,''.join(r.choice(string.ascii_letters+string.digits)for _ in range(64)),q=chr(34))for key in 'AUTH_KEY SECURE_AUTH_KEY LOGGED_IN_KEY NONCE_KEY AUTH_SALT SECURE_AUTH_SALT LOGGED_IN_SALT NONCE_SALT'.split(' ')))"
+</pre>
